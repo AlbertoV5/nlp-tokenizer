@@ -19,7 +19,7 @@ data_map = kardiasclean.spread_column(data['surgery'])
 data_map['surgery'] = kardiasclean.clean_accents(data_map['surgery'])
 data_map['surgery'] = kardiasclean.clean_symbols(data_map['surgery'])
 data_map['keywords'] = kardiasclean.clean_stopwords(data_map['surgery'])
-data_map['token'] = kardiasclean.clean_tokenize(data_map['keywords'])
+data_map['token'] = kardiasclean.clean_tokenize(data_map['keywords'])s
 ```
 
 ## Development
@@ -30,4 +30,5 @@ poetry run pytest
 
 ## Changelog
 
-- 0.1.0: Initial Release
+- 0.1.1: Small readme fixes.
+- 0.1.0: Initial Release.

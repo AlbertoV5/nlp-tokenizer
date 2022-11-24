@@ -1,11 +1,13 @@
 [tool.poetry]
 name = "kardiasclean"
-version = "0.1.0"
+version = "0.1.1"
 description = "Medical Records Normalizer"
 authors = ["AlbertoV5 <58243333+AlbertoV5@users.noreply.github.com>"]
 license = "MIT"
 readme = "README.md"
 packages = [{include="kardiasclean", from="src"}]
+repository = "https://github.com/AlbertoV5/kardiasclean"
+
 
 [tool.poetry.dependencies]
 python = "^3.7.6,<3.11"
