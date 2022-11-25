@@ -20,31 +20,37 @@ def test_main():
                 " Reparación de CIV, parche + Reparación de estenosis aórtica subvalvular",
                 "Reparación de CIV con parche + Cierre quirúrgico de Conducto Arterioso",
                 "Reparación de CIV, parche + Ampliación del tracto de salida del VD + Reparación de CIA, primaria",
-            )
+            ),
         }
     ).set_index("patient_id")
     log.debug(data)
-    data['surgery'] = kardiasclean.split_string(data['surgery'])
+    data["surgery"] = kardiasclean.split_string(data["surgery"])
     log.debug(data)
-    data_map = kardiasclean.spread_column(data['surgery'])
+    data_map = kardiasclean.spread_column(data["surgery"])
     log.debug(data_map)
     log.debug(data_map.columns)
     # Clean
-    data_map['surgery'] = kardiasclean.clean_accents(data_map['surgery'])
-    data_map['surgery'] = kardiasclean.clean_symbols(data_map['surgery'])
-    data_map['keywords'] = kardiasclean.clean_stopwords(data_map['surgery'])
-    data_map['token'] = kardiasclean.clean_tokenize(data_map['keywords'])
-    data_list = kardiasclean.create_unique_list(data_map, data_map['token']).drop(["patient_id"], axis=1)
+    data_map["surgery"] = kardiasclean.clean_accents(data_map["surgery"])
+    data_map["surgery"] = kardiasclean.clean_symbols(data_map["surgery"])
+    data_map["keywords"] = kardiasclean.clean_stopwords(data_map["surgery"])
+    data_map["token"] = kardiasclean.clean_tokenize(data_map["keywords"])
+    data_list = kardiasclean.create_unique_list(data_map, data_map["token"]).drop(
+        ["patient_id"], axis=1
+    )
     log.debug(data_list)
     # normalize map
-    data_map['surgery'] = kardiasclean.normalize_from_tokens(data_map['token'], data_list['token'], data_list['surgery'])
-    log.debug(data_map['surgery'])
+    data_map["surgery"] = kardiasclean.normalize_from_tokens(
+        data_map["token"], data_list["token"], data_list["surgery"]
+    )
+    log.debug(data_map["surgery"])
     # Pre-process
-    bins = kardiasclean.perform_binning_quantile(data_map, 'surgery', quantile=0.9)
+    bins = kardiasclean.perform_binning_quantile(data_map, "surgery", quantile=0.9)
     log.debug(f"\n{bins}")
     high_freq, low_freq = bins[:1], bins[1:]
     evaluation = kardiasclean.evaluate_distribution(high_freq, low_freq)
     log.debug(evaluation)
     log.debug(data_map.columns)
-    matrix = kardiasclean.perform_matrix_encoding(data_map['surgery'], data_map['patient_id'])
+    matrix = kardiasclean.perform_matrix_encoding(
+        data_map["surgery"], data_map["patient_id"]
+    )
     log.debug(matrix)

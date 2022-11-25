@@ -2,17 +2,28 @@
 import pandas as pd
 
 
-def get_unique_count(df: pd.DataFrame, column: str) -> int:
-    """Get the total unique values in a dataframe by column.
+def get_unique_stats(df: pd.DataFrame) -> pd.DataFrame:
+    """Get the total unique values in all columns.
 
     Args:
-        df (pd.DataFrame): Dataframe.
-        column (str): Column in that dataframe.
+        df (pd.DataFrame): Column.
 
     Returns:
         int: Count number.
     """
-    return df[column].value_counts().count()
+    unique = pd.DataFrame(
+        {column: df[column].value_counts().count() for column in df.columns},
+        index=["unique_count"],
+    )
+    percent = (unique / df.count()).rename(index={"unique_count": "percent_of_total"})
+    per = (1 / percent).rename(index={"percent_of_total": "avg_per_record"})
+    return pd.concat(
+        [
+            unique,
+            percent,
+            per,
+        ]
+    )
 
 
 def get_difference_index(a: pd.DataFrame, b: pd.DataFrame) -> pd.DataFrame:
@@ -26,4 +37,3 @@ def get_difference_index(a: pd.DataFrame, b: pd.DataFrame) -> pd.DataFrame:
         pd.DataFrame: Index that can be used to index the original dataframe.
     """
     return list(set(a.index) - set(b.index))
-

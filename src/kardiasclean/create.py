@@ -19,14 +19,18 @@ def spread_column(column: pd.Series) -> pd.DataFrame:
         surgery_map = create_spread_column(df['surgery'])
     """
     return pd.DataFrame(
-            [
-                (index_i, values_j) for index_i, values_i 
-                in column.items() for values_j in values_i
-            ], columns=[column.index.name, column.name]
-        )
+        [
+            (index_i, values_j)
+            for index_i, values_i in column.items()
+            for values_j in values_i
+        ],
+        columns=[column.index.name, column.name],
+    )
 
 
-def create_unique_list(df: pd.DataFrame, column: pd.Series, position: int = 0) -> pd.DataFrame:
+def create_unique_list(
+    df: pd.DataFrame, column: pd.Series, position: int = 0
+) -> pd.DataFrame:
     """Create a list of unique values in a dataframe from given column.
 
     Args:
@@ -38,9 +42,6 @@ def create_unique_list(df: pd.DataFrame, column: pd.Series, position: int = 0) -
         pd.DataFrame: New dataframe with non-repeated values.
     """
     return pd.DataFrame(
-        [
-            df[column == token].iloc[position]
-            for token in column.unique()
-        ],
+        [df[column == token].iloc[position] for token in column.unique()],
         columns=df.columns,
     ).reset_index()
