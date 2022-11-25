@@ -38,7 +38,7 @@ def clean_accents(column: pd.Series) -> pd.Series:
     Example:
 
         data['surgery'] = clean_accents(data['surgery'])
-    
+
     https://stackoverflow.com/questions/65833714/how-to-remove-accents-from-a-string-in-python
     """
     _normalize = str.maketrans(

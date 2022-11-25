@@ -10,7 +10,7 @@ def normalize_from_tokens(
     """Find all tokens from token column in list_token,
     then use list_column to get the first appareance of given token.
 
-    Args:
+    Args:s
         token_column (pd.Series): Tokens to find.
         list_token (pd.Series): Bag of tokens.
         list_column (pd.Series): Values to index from bag of tokens.

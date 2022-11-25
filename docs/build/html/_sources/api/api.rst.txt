@@ -1,0 +1,28 @@
+﻿API
+============
+
+.. automodule:: kardiasclean
+
+   .. autosummary::
+
+      split_string
+      clean_accents
+      clean_symbols
+      clean_stopwords
+      clean_tokenize
+      perform_binning_quantile
+      perform_binning_scalar
+      perform_matrix_encoding
+      perform_frequency_split_quantile
+      perform_frequency_split_scalar
+
+      evaluate_distribution
+      PostgresManager
+
+
+   .. rubric:: Cleaning Functions
+
+   .. autofunction:: clean_accents
+   .. autofunction:: clean_symbols
+   .. autofunction:: clean_stopwords
+   .. autofunction:: clean_tokenize

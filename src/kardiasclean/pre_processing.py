@@ -46,7 +46,9 @@ def perform_binning_scalar(
     return new_df[column].value_counts()
 
 
-def perform_frequency_split_quantile(column: pd.Series, quantile: int = 0.5) -> List[pd.Series]:
+def perform_frequency_split_quantile(
+    column: pd.Series, quantile: int = 0.5
+) -> List[pd.Series]:
     """Split the value counts of the data in two frequency bins, low and high, based on quantile.
 
     Args:
@@ -57,10 +59,15 @@ def perform_frequency_split_quantile(column: pd.Series, quantile: int = 0.5) -> 
         Tuple[pd.Series, pd.Series]: low_frequency, high_frequency
     """
     counts = column.value_counts()
-    return [counts[counts < counts.quantile(quantile)], counts[counts >= counts.quantile(quantile)]]
+    return [
+        counts[counts < counts.quantile(quantile)],
+        counts[counts >= counts.quantile(quantile)],
+    ]
 
 
-def perform_frequency_split_scalar(column: pd.Series, value: int = 2) -> List[pd.Series]:
+def perform_frequency_split_scalar(
+    column: pd.Series, value: int = 2
+) -> List[pd.Series]:
     """Split the value counts of the data in two frequency bins, low and high, based on scalar value.
 
     Args:

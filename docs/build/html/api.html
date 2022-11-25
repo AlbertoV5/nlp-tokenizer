@@ -1,0 +1,592 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="Welcome to Kardiasclean’s documentation!" href="index.html" />
+
+    <meta name="generator" content="sphinx-5.0.2, furo 2022.06.21"/>
+        <title>API - Kardiasclean 0.1.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Kardiasclean 0.1.2 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">Kardiasclean 0.1.2 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">API</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="module-kardiasclean">
+<span id="api"></span><h1>API<a class="headerlink" href="#module-kardiasclean" title="Permalink to this heading">#</a></h1>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#kardiasclean.split_string" title="kardiasclean.split_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">split_string</span></code></a>(column[, delimiter])</p></td>
+<td><p>Split string by delimiter and clear whitespaces.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#kardiasclean.clean_accents" title="kardiasclean.clean_accents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clean_accents</span></code></a>(column)</p></td>
+<td><p>Clear accents from a string.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#kardiasclean.clean_symbols" title="kardiasclean.clean_symbols"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clean_symbols</span></code></a>(column[, pattern])</p></td>
+<td><p>Remove all symbols on a string using a regex pattern.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#kardiasclean.clean_stopwords" title="kardiasclean.clean_stopwords"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clean_stopwords</span></code></a>(column[, language, add])</p></td>
+<td><p>Remove all stopwords from a string and returns a new sorted string.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#kardiasclean.clean_tokenize" title="kardiasclean.clean_tokenize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clean_tokenize</span></code></a>(column[, algorithm])</p></td>
+<td><p>Use a fuzzy string match algorithm to tokenize a string.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#kardiasclean.perform_binning_quantile" title="kardiasclean.perform_binning_quantile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">perform_binning_quantile</span></code></a>(df, column[, ...])</p></td>
+<td><p>Bin low frequency values by quantile threshold.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#kardiasclean.perform_binning_scalar" title="kardiasclean.perform_binning_scalar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">perform_binning_scalar</span></code></a>(df, column[, value, ...])</p></td>
+<td><p>Bin low frequency values by a scalar value threshold.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#kardiasclean.perform_matrix_encoding" title="kardiasclean.perform_matrix_encoding"><code class="xref py py-obj docutils literal notranslate"><span class="pre">perform_matrix_encoding</span></code></a>(column, group_by)</p></td>
+<td><p>Returns encoded values as a matrix of columns with binary values.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#kardiasclean.perform_frequency_split_quantile" title="kardiasclean.perform_frequency_split_quantile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">perform_frequency_split_quantile</span></code></a>(column[, ...])</p></td>
+<td><p>Split the value counts of the data in two frequency bins, low and high, based on quantile.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#kardiasclean.perform_frequency_split_scalar" title="kardiasclean.perform_frequency_split_scalar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">perform_frequency_split_scalar</span></code></a>(column[, value])</p></td>
+<td><p>Split the value counts of the data in two frequency bins, low and high, based on scalar value.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#kardiasclean.get_unique_stats" title="kardiasclean.get_unique_stats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_unique_stats</span></code></a>(df)</p></td>
+<td><p>Get the total unique values in all columns.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#kardiasclean.evaluate_distribution" title="kardiasclean.evaluate_distribution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">evaluate_distribution</span></code></a>(high_frequency, ...)</p></td>
+<td><p>Given two value counts arrays, print a summary of the distribution.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#kardiasclean.PostgresManager" title="kardiasclean.PostgresManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostgresManager</span></code></a>(database[, password, host, ...])</p></td>
+<td><p>Manage database connection.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p class="rubric">Transformation Functions</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="kardiasclean.split_string">
+<span class="sig-prename descclassname"><span class="pre">kardiasclean.</span></span><span class="sig-name descname"><span class="pre">split_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delimiter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'+'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Series</span></span></span><a class="headerlink" href="#kardiasclean.split_string" title="Permalink to this definition">#</a></dt>
+<dd><p>Split string by delimiter and clear whitespaces.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>column (pd.Series): Column to clean.
+delimiter (str, optional): Delimiter without whitespaces. Defaults to “+”.</p>
+</dd>
+<dt>Returns:</dt><dd><p>pd.Series: Clean column.</p>
+</dd>
+</dl>
+<p>Example:</p>
+<blockquote>
+<div><p>diagnosis = split_string(df[‘diagnosis’])</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="kardiasclean.spread_column">
+<span class="sig-prename descclassname"><span class="pre">kardiasclean.</span></span><span class="sig-name descname"><span class="pre">spread_column</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#kardiasclean.spread_column" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns a Column with values spread over duplicated indexes.</p>
+<p>If {1: [a, b], 2:[c]}, then the result will be {1:a, 1:b, 2:c}.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>column (pd.Series): Column to spread.</p>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame:</p>
+</dd>
+</dl>
+<p>Example:</p>
+<blockquote>
+<div><p>surgery_map = create_spread_column(df[‘surgery’])</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="kardiasclean.create_unique_list">
+<span class="sig-prename descclassname"><span class="pre">kardiasclean.</span></span><span class="sig-name descname"><span class="pre">create_unique_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#kardiasclean.create_unique_list" title="Permalink to this definition">#</a></dt>
+<dd><p>Create a list of unique values in a dataframe from given column.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>df (pd.DataFrame): Complete dataframe.
+column (pd.Series): Column.
+position (int, optional): Get first or last, 0 or -1. Defaults to 0.</p>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: New dataframe with non-repeated values.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Cleaning Functions</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="kardiasclean.clean_accents">
+<span class="sig-prename descclassname"><span class="pre">kardiasclean.</span></span><span class="sig-name descname"><span class="pre">clean_accents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Series</span></span></span><a class="headerlink" href="#kardiasclean.clean_accents" title="Permalink to this definition">#</a></dt>
+<dd><p>Clear accents from a string.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>column (pd.Series): Column to clean.</p>
+</dd>
+<dt>Returns:</dt><dd><p>pd.Series: Clean column.</p>
+</dd>
+</dl>
+<p>Example:</p>
+<blockquote>
+<div><p>data[‘surgery’] = clean_accents(data[‘surgery’])</p>
+</div></blockquote>
+<p><a class="reference external" href="https://stackoverflow.com/questions/65833714/how-to-remove-accents-from-a-string-in-python">https://stackoverflow.com/questions/65833714/how-to-remove-accents-from-a-string-in-python</a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="kardiasclean.clean_symbols">
+<span class="sig-prename descclassname"><span class="pre">kardiasclean.</span></span><span class="sig-name descname"><span class="pre">clean_symbols</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pattern</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">',|\\(|\\)|\\.'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Series</span></span></span><a class="headerlink" href="#kardiasclean.clean_symbols" title="Permalink to this definition">#</a></dt>
+<dd><p>Remove all symbols on a string using a regex pattern.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>column (pd.Series): Column to clean.
+pattern (str): Any raw string with regex pattern.</p>
+</dd>
+<dt>Returns:</dt><dd><p>pd.Series: Clean column.</p>
+</dd>
+</dl>
+<p>Example:</p>
+<blockquote>
+<div><p>surgery = clean_symbols(data[‘surgery’])</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="kardiasclean.clean_stopwords">
+<span class="sig-prename descclassname"><span class="pre">kardiasclean.</span></span><span class="sig-name descname"><span class="pre">clean_stopwords</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">language</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'spanish'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Series</span></span></span><a class="headerlink" href="#kardiasclean.clean_stopwords" title="Permalink to this definition">#</a></dt>
+<dd><p>Remove all stopwords from a string and returns a new sorted string.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>column (pd.Series): Column to clean.
+language (str): Language, see nltk.
+args (list, optional): Additional stopwords to remove. Defaults to None.</p>
+</dd>
+<dt>Returns:</dt><dd><p>pd.Series: Clean column.</p>
+</dd>
+</dl>
+<p>Example:</p>
+<blockquote>
+<div><p>data[‘keywords’] = clean_stopwords(data[‘surgery’])</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="kardiasclean.clean_tokenize">
+<span class="sig-prename descclassname"><span class="pre">kardiasclean.</span></span><span class="sig-name descname"><span class="pre">clean_tokenize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'metaphone'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Series</span></span></span><a class="headerlink" href="#kardiasclean.clean_tokenize" title="Permalink to this definition">#</a></dt>
+<dd><p>Use a fuzzy string match algorithm to tokenize a string.</p>
+<p>Valid algorithms: metaphone, dmetaphone.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>column (pd.Series): Column to clean.
+algorithm (str, optional): Algorithm. Defaults to ‘metaphone’.</p>
+</dd>
+<dt>Raises:</dt><dd><p>ValueError: If the algorithm is not valid.</p>
+</dd>
+<dt>Returns:</dt><dd><p>pd.Series: Clean column.</p>
+</dd>
+<dt>Example:</dt><dd><p>surgery_map_df[‘token’] = clean_tokenize(data[‘keywords’])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Normalization Functions</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="kardiasclean.normalize_from_tokens">
+<span class="sig-prename descclassname"><span class="pre">kardiasclean.</span></span><span class="sig-name descname"><span class="pre">normalize_from_tokens</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token_column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Series</span></span></span><a class="headerlink" href="#kardiasclean.normalize_from_tokens" title="Permalink to this definition">#</a></dt>
+<dd><p>Find all tokens from token column in list_token,
+then use list_column to get the first appareance of given token.</p>
+<dl class="simple">
+<dt>Args:s</dt><dd><p>token_column (pd.Series): Tokens to find.
+list_token (pd.Series): Bag of tokens.
+list_column (pd.Series): Values to index from bag of tokens.</p>
+</dd>
+<dt>Returns:</dt><dd><p>pd.Series: New column.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Pre-Processing Functions</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="kardiasclean.perform_binning_quantile">
+<span class="sig-prename descclassname"><span class="pre">kardiasclean.</span></span><span class="sig-name descname"><span class="pre">perform_binning_quantile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quantile</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Other'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#kardiasclean.perform_binning_quantile" title="Permalink to this definition">#</a></dt>
+<dd><p>Bin low frequency values by quantile threshold.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>df (pd.DataFrame): Dataframe.
+column (str): Column name where the values live.
+quantile (float, optional): Quantile threshold. Defaults to 0.5.
+bin_name (str, optional): Name for bin. Defaults to “Other”.</p>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: Value counts of dataframe.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="kardiasclean.perform_binning_scalar">
+<span class="sig-prename descclassname"><span class="pre">kardiasclean.</span></span><span class="sig-name descname"><span class="pre">perform_binning_scalar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Other'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#kardiasclean.perform_binning_scalar" title="Permalink to this definition">#</a></dt>
+<dd><p>Bin low frequency values by a scalar value threshold.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>df (pd.DataFrame): Dataframe.
+column (str): Column name where the values live.
+value (int, optional): Scalar value threshold. Defaults to 2.
+bin_name (str, optional): Name for bin. Defaults to “Other”.</p>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: Value counts of dataframe.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="kardiasclean.perform_frequency_split_quantile">
+<span class="sig-prename descclassname"><span class="pre">kardiasclean.</span></span><span class="sig-name descname"><span class="pre">perform_frequency_split_quantile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quantile</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Series</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#kardiasclean.perform_frequency_split_quantile" title="Permalink to this definition">#</a></dt>
+<dd><p>Split the value counts of the data in two frequency bins, low and high, based on quantile.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>column (pd.Series): Column to split.
+quantile (int, optional): Quantile threshold. Defaults to 0.5.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Tuple[pd.Series, pd.Series]: low_frequency, high_frequency</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="kardiasclean.perform_frequency_split_scalar">
+<span class="sig-prename descclassname"><span class="pre">kardiasclean.</span></span><span class="sig-name descname"><span class="pre">perform_frequency_split_scalar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Series</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#kardiasclean.perform_frequency_split_scalar" title="Permalink to this definition">#</a></dt>
+<dd><p>Split the value counts of the data in two frequency bins, low and high, based on scalar value.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>column (pd.Series): Column to split.
+value (int, optional): Scalar threshold. Defaults to 2.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Tuple[pd.Series, pd.Series]: low_frequency, high_frequency</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="kardiasclean.perform_matrix_encoding">
+<span class="sig-prename descclassname"><span class="pre">kardiasclean.</span></span><span class="sig-name descname"><span class="pre">perform_matrix_encoding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">column</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_by</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#kardiasclean.perform_matrix_encoding" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns encoded values as a matrix of columns with binary values.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>column (pd.Series): Column to perform the matrix on.
+group_by (pd.Series): Column to group_by, like id.</p>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: group_by column with matrix.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Utility Functions</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="kardiasclean.get_unique_stats">
+<span class="sig-prename descclassname"><span class="pre">kardiasclean.</span></span><span class="sig-name descname"><span class="pre">get_unique_stats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#kardiasclean.get_unique_stats" title="Permalink to this definition">#</a></dt>
+<dd><p>Get the total unique values in all columns.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>df (pd.DataFrame): Column.</p>
+</dd>
+<dt>Returns:</dt><dd><p>int: Count number.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="kardiasclean.evaluate_distribution">
+<span class="sig-prename descclassname"><span class="pre">kardiasclean.</span></span><span class="sig-name descname"><span class="pre">evaluate_distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">high_frequency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low_frequency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Series</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#kardiasclean.evaluate_distribution" title="Permalink to this definition">#</a></dt>
+<dd><p>Given two value counts arrays, print a summary of the distribution.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>high_frequency (pd.Series): Data.
+low_frequency (pd.Series): Data.</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: String to print.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="kardiasclean.get_difference_index">
+<span class="sig-prename descclassname"><span class="pre">kardiasclean.</span></span><span class="sig-name descname"><span class="pre">get_difference_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#kardiasclean.get_difference_index" title="Permalink to this definition">#</a></dt>
+<dd><p>Get the index values from dataframe “a” that don’t exist in dataframe “b”.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>a (pd.DataFrame): Dataframe with the most values.
+b (pd.DataFrame): Dataframe with the least values.</p>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: Index that can be used to index the original dataframe.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">SQL PostgresManager</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="kardiasclean.PostgresManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kardiasclean.</span></span><span class="sig-name descname"><span class="pre">PostgresManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'localhost'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'5432'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'postgres'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kardiasclean.PostgresManager" title="Permalink to this definition">#</a></dt>
+<dd><p>Manage database connection.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="kardiasclean.PostgresManager.create_table">
+<span class="sig-name descname"><span class="pre">create_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#kardiasclean.PostgresManager.create_table" title="Permalink to this definition">#</a></dt>
+<dd><p>Creates a SQL table, replace if exists.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>name (str): Table name.
+df (pd.DataFrame): Dataframe to use for creating table.</p>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: Returns the dataframe confirmation fromq querying the SQL database.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="kardiasclean.PostgresManager.read_table">
+<span class="sig-name descname"><span class="pre">read_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#kardiasclean.PostgresManager.read_table" title="Permalink to this definition">#</a></dt>
+<dd><p>Read a single table by name.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>name (str): Name of table.</p>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: Dataframe from table.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="kardiasclean.PostgresManager.read_join">
+<span class="sig-name descname"><span class="pre">read_join</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#kardiasclean.PostgresManager.read_join" title="Permalink to this definition">#</a></dt>
+<dd><p>Get a dataframe from the join of two tables.
+If “last” is included, join it to the join of the first two.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>left (str): Left table in join.
+right (str): Right table in join.
+last (str, optional): Right join after the first join. Defaults to None.</p>
+</dd>
+<dt>Returns:</dt><dd><p>pd.DataFrame: Joined dataframe.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="kardiasclean.PostgresManager.read_query">
+<span class="sig-name descname"><span class="pre">read_query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#kardiasclean.PostgresManager.read_query" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          <a class="prev-page" href="index.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Home</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, Alberto Valdez
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    </body>
+</html>
