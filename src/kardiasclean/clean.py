@@ -22,12 +22,12 @@ def split_string(column: pd.Series, delimiter: str = "+") -> pd.Series:
 
     def clean(x: str):
         return [string.strip() for string in x.split(delimiter)]
-
+    
     return column.map(clean)
 
 
 def clean_accents(column: pd.Series) -> pd.Series:
-    """Clear accents from a string.
+    """Clear accents from a string. It also makes all words lowercase.
 
     Args:
         column (pd.Series): Column to clean.
@@ -103,7 +103,7 @@ def clean_accents(column: pd.Series) -> pd.Series:
     def clean(x: str):
         return x.translate(_normalize)
 
-    return column.map(clean)
+    return column.map(clean).str.lower()
 
 
 def clean_symbols(column: pd.Series, pattern: str = r",|\(|\)|\.") -> pd.Series:
@@ -145,11 +145,12 @@ def clean_stopwords(
         data['keywords'] = clean_stopwords(data['surgery'])
     """
 
+    stopwords_set = set([*_stopwords.words(language), *add])
     def clean(x: str) -> str:
         return " ".join(
             word
             for word in sorted(
-                set(x.split(" ")) - set(_stopwords.words(language) + add)
+                set(x.split(" ")) - stopwords_set
             )
         )
 
@@ -175,15 +176,8 @@ def clean_tokenize(column: pd.Series, algorithm: str = "metaphone") -> pd.Series
         surgery_map_df['token'] = clean_tokenize(data['keywords'])
     """
     if algorithm == "metaphone":
-
-        def clean(x: str) -> str:
-            return phonetics.metaphone(x)
-
+        return column.map(phonetics.metaphone)
     elif algorithm == "dmetaphone":
-
-        def clean(x: str) -> str:
-            return phonetics.dmetaphone(x)
-
+        return column.map(phonetics.dmetaphone)
     else:
         raise ValueError("Not a valid algorithm!")
-    return column.map(clean)
