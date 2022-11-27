@@ -45,4 +45,4 @@ def create_unique_list(
     return pd.DataFrame(
         [df[column == token].iloc[position] for token in column.unique()],
         columns=df.columns,
-    ).reset_index()
+    ).reset_index().drop(["index"], axis=1)

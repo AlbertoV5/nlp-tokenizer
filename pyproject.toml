@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "kardiasclean"
-version = "0.1.5"
+version = "0.1.6"
 description = "Medical Records Normalizer"
 authors = ["AlbertoV5 <58243333+AlbertoV5@users.noreply.github.com>"]
 license = "MIT"
