@@ -39,6 +39,7 @@ def create_unique_list(
         position (int, optional): Get first or last, 0 or -1. Defaults to 0.
 
     Returns:
+
         pd.DataFrame: New dataframe with non-repeated values.
     """
     return pd.DataFrame(

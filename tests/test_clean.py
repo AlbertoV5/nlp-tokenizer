@@ -23,21 +23,20 @@ def test_main():
             ),
         }
     ).set_index("patient_id")
-    log.debug(data)
+    assert data.index.name == "patient_id"
     data["surgery"] = kardiasclean.split_string(data["surgery"])
     log.debug(data)
     data_map = kardiasclean.spread_column(data["surgery"])
     log.debug(data_map)
-    log.debug(data_map.columns)
     # Clean
     data_map["surgery"] = kardiasclean.clean_accents(data_map["surgery"])
     data_map["surgery"] = kardiasclean.clean_symbols(data_map["surgery"])
-    data_map["keywords"] = kardiasclean.clean_stopwords(data_map["surgery"])
+    data_map["keywords"] = kardiasclean.clean_stopwords(data_map["surgery"], extra=["parche"])
     data_map["token"] = kardiasclean.clean_tokenize(data_map["keywords"])
     data_list = kardiasclean.create_unique_list(data_map, data_map["token"]).drop(
         ["patient_id"], axis=1
     )
-    log.debug(data_list)
+    log.debug(data_list['keywords'])
     # normalize map
     data_map["surgery"] = kardiasclean.normalize_from_tokens(
         data_map["token"], data_list["token"], data_list["surgery"]

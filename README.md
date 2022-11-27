@@ -30,6 +30,8 @@ poetry run pytest
 
 ## Changelog
 
+- 0.1.5: Fixes to stopwords implementation, added lowercase conversion.
+- 0.1.3: Added Documentation.
 - 0.1.2: Added SQL support and improved pre-processing functions.
 - 0.1.1: Small readme fixes.
 - 0.1.0: Initial Release.

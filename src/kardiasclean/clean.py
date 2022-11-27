@@ -1,7 +1,7 @@
 """Process and tokenize strings"""
+import nltk
 from nltk.corpus import stopwords as _stopwords
 import phonetics
-import re
 import pandas as pd
 
 
@@ -22,12 +22,12 @@ def split_string(column: pd.Series, delimiter: str = "+") -> pd.Series:
 
     def clean(x: str):
         return [string.strip() for string in x.split(delimiter)]
-    
+
     return column.map(clean)
 
 
 def clean_accents(column: pd.Series) -> pd.Series:
-    """Clear accents from a string. It also makes all words lowercase.
+    """Clear accents from a string.
 
     Args:
         column (pd.Series): Column to clean.
@@ -99,11 +99,7 @@ def clean_accents(column: pd.Series) -> pd.Series:
             "¹": "1",
         }
     )
-
-    def clean(x: str):
-        return x.translate(_normalize)
-
-    return column.map(clean).str.lower()
+    return column.str.translate(_normalize)
 
 
 def clean_symbols(column: pd.Series, pattern: str = r",|\(|\)|\.") -> pd.Series:
@@ -120,22 +116,19 @@ def clean_symbols(column: pd.Series, pattern: str = r",|\(|\)|\.") -> pd.Series:
 
         surgery = clean_symbols(data['surgery'])
     """
-
-    def clean(x: str) -> str:
-        return re.sub(pattern, "", x)
-
-    return column.map(clean)
+    return column.str.replace(pat=pattern, repl="", regex=True)
 
 
 def clean_stopwords(
-    column: pd.Series, language: str = "spanish", add: list = []
+    column: pd.Series, language: str = "spanish", extra: list = None, lower: bool = True
 ) -> pd.Series:
     """Remove all stopwords from a string and returns a new sorted string.
+    This function will also convert all words to lowercase before removing stopwords.
 
     Args:
         column (pd.Series): Column to clean.
         language (str): Language, see nltk.
-        args (list, optional): Additional stopwords to remove. Defaults to None.
+        extra (list, optional): Additional stopwords to remove. Defaults to None.
 
     Returns:
         pd.Series: Clean column.
@@ -145,16 +138,18 @@ def clean_stopwords(
         data['keywords'] = clean_stopwords(data['surgery'])
     """
 
-    stopwords_set = set([*_stopwords.words(language), *add])
-    def clean(x: str) -> str:
-        return " ".join(
-            word
-            for word in sorted(
-                set(x.split(" ")) - stopwords_set
-            )
-        )
+    try:
+        sw = _stopwords.words(language)
+    except LookupError:
+        nltk.download("stopwords")
+        sw = _stopwords.words(language)
 
-    return column.map(clean)
+    sws = set([*sw, *extra]) if extra is not None else set(sw)
+
+    def clean(x: str) -> str:
+        return " ".join(word for word in sorted(set(x.split(" ")) - sws))
+    
+    return column.str.lower().map(clean) if lower else column.map(clean)
 
 
 def clean_tokenize(column: pd.Series, algorithm: str = "metaphone") -> pd.Series:
