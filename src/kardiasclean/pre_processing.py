@@ -81,7 +81,7 @@ def perform_frequency_split_scalar(
     return [counts[counts < value], counts[counts >= value]]
 
 
-def perform_matrix_encoding(column: pd.Series, group_by: pd.Series) -> pd.DataFrame:
+def perform_matrix_encoding(column: pd.Series, group_by: pd.Series, append_name: bool = True) -> pd.DataFrame:
     """Returns encoded values as a matrix of columns with binary values.
 
     Args:
@@ -91,12 +91,13 @@ def perform_matrix_encoding(column: pd.Series, group_by: pd.Series) -> pd.DataFr
     Returns:
         pd.DataFrame: group_by column with matrix.
     """
+    name = f"{column.name}_" if append_name else ""
     return (
         pd.DataFrame(
             {
                 group_by.name: group_by.values,
                 **{
-                    f"{column.name}_{value}": np.where(column == value, 1, 0)
+                    f"{name}{value}": np.where(column == value, 1, 0)
                     for value in column.values
                 },
             },

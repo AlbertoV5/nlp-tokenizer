@@ -4,12 +4,13 @@
 .. automodule:: kardiasclean
 
    .. autosummary::
-
+      
       split_string
       clean_accents
       clean_symbols
       clean_stopwords
       clean_tokenize
+      normalize_from_tokens
       perform_binning_quantile
       perform_binning_scalar
       perform_matrix_encoding

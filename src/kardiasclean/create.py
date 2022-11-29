@@ -1,6 +1,5 @@
 """Create DataFrames from other dfs or columns."""
 import pandas as pd
-import numpy as np
 
 
 def spread_column(column: pd.Series) -> pd.DataFrame:
