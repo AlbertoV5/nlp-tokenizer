@@ -54,10 +54,14 @@ def evaluate_distribution(high_frequency: pd.Series, low_frequency: pd.Series) -
     count_top = high_frequency.count()
     total = n_other + n_top
     return (
-        f"Number of high frequency data: {n_top}\n"
-        f"Number of low frequency data: {n_other}\n"
+        f"Total data (repeated): {total}\n"
         f"{'-'*20}\n"
-        f"Total Number of data: {total}.\n"
+        f"Unique high frequency data: {high_frequency.count()}\n"
+        f"Unique low frequency data: {low_frequency.count()}\n"
+        f"{'-'*20}\n"
+        f"Total high frequency data: {n_top}\n"
+        f"Total low frequency data: {n_other}\n"
+        f"{'-'*20}\n"
         f"Percentage of high data: {100*n_top/total:.2f}%\n"
         f"Percentage of low data: {100*n_other/total:.2f}%\n"
         f"{'-'*20}\n"

@@ -47,6 +47,8 @@ poetry run pytest
 
 ## Changelog
 
+- 0.2.0: Fixed critical 
+
 - 0.1.7: Added support for not appending column name to matrix encoding.
 - 0.1.6: Small fixes to stopwords, updated readme.
 - 0.1.5: Fix stopwords implementation, added lowercase conversion.

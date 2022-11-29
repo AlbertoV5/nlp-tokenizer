@@ -43,9 +43,9 @@ def test_main():
     )
     log.debug(data_map["surgery"])
     # Pre-process
-    bins = kardiasclean.perform_binning_quantile(data_map, "surgery", quantile=0.9)
+    bins = kardiasclean.perform_binning_quantile(data_map["surgery"], quantile=0.9)
     log.debug(f"\n{bins}")
-    high_freq, low_freq = bins[:1], bins[1:]
+    high_freq, low_freq = kardiasclean.perform_frequency_split_quantile(data_map["surgery"], quantile=0.9)
     evaluation = kardiasclean.evaluate_distribution(high_freq, low_freq)
     log.debug(evaluation)
     log.debug(data_map.columns)

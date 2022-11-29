@@ -5,45 +5,43 @@ from typing import List
 
 
 def perform_binning_quantile(
-    df: pd.DataFrame, column: str, quantile: float = 0.5, bin_name: str = "Other"
+   column: pd.Series, quantile: float = 0.5, bin_name: str = "Other"
 ) -> pd.DataFrame:
     """Bin low frequency values by quantile threshold.
 
     Args:
-        df (pd.DataFrame): Dataframe.
-        column (str): Column name where the values live.
+        column (pd.Series): Column to bin.
         quantile (float, optional): Quantile threshold. Defaults to 0.5.
         bin_name (str, optional): Name for bin. Defaults to "Other".
 
     Returns:
         pd.DataFrame: Value counts of dataframe.
     """
-    new_df = df.copy(deep=True)
-    counts = new_df[column].value_counts()
+    column = column.copy(deep=True)
+    counts = column.value_counts()
     for group in counts[counts < counts.quantile(quantile)].index:
-        new_df[column] = new_df[column].replace(group, bin_name)
-    return new_df[column].value_counts()
+        column = column.replace(group, bin_name)
+    return column
 
 
 def perform_binning_scalar(
-    df: pd.DataFrame, column: str, value: int = 2, bin_name: str = "Other"
+    column: pd.Series, value: int = 2, bin_name: str = "Other"
 ) -> pd.DataFrame:
     """Bin low frequency values by a scalar value threshold.
 
     Args:
-        df (pd.DataFrame): Dataframe.
-        column (str): Column name where the values live.
+        column (pd.Series): Column to bin.
         value (int, optional): Scalar value threshold. Defaults to 2.
         bin_name (str, optional): Name for bin. Defaults to "Other".
 
     Returns:
         pd.DataFrame: Value counts of dataframe.
     """
-    new_df = df.copy(deep=True)
-    counts = new_df[column].value_counts()
+    column = column.copy(deep=True)
+    counts = column.value_counts()
     for group in counts[counts < value].index:
-        new_df[column] = new_df[column].replace(group, bin_name)
-    return new_df[column].value_counts()
+        column = column.replace(group, bin_name)
+    return column
 
 
 def perform_frequency_split_quantile(
