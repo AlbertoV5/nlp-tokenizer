@@ -13,18 +13,18 @@ pip install kardiasclean
 ```python
 import kardiasclean
 
-data['surgery'] = kardiasclean.split_string(data['surgery'])
-data_map = kardiasclean.spread_column(data['surgery'])
+data['procedure'] = kardiasclean.split_string(data['procedure'], delimiter="+")
+data_map = kardiasclean.spread_column(data['procedure'])
 
-data_map['surgery'] = kardiasclean.clean_accents(data_map['surgery'])
-data_map['surgery'] = kardiasclean.clean_symbols(data_map['surgery'])
-data_map['keywords'] = kardiasclean.clean_stopwords(data_map['surgery'])
+data_map['procedure'] = kardiasclean.clean_accents(data_map['procedure'])
+data_map['procedure'] = kardiasclean.clean_symbols(data_map['procedure'])
+data_map['keywords'] = kardiasclean.clean_stopwords(data_map['procedure'])
 data_map['token'] = kardiasclean.clean_tokenize(data_map['keywords'])
 
 list_df = kardiasclean.create_unique_list(spread_df, spread_df['token'])
 list_df = list_df.drop(["patient_id", "index"], axis=1)
 
-spread_df['surgery'] = kardiasclean.normalize_from_tokens(spread_df['token'], list_df['token'], list_df['surgery'])
+spread_df['procedure'] = kardiasclean.normalize_from_tokens(spread_df['token'], list_df['token'], list_df['procedure'])
 
 >>>    patient_id                 procedure               keywords      token
 >>> 0           0  Reparacion de CIA parche  cia parche reparacion  SPRXRPRSN
@@ -36,7 +36,7 @@ spread_df['surgery'] = kardiasclean.normalize_from_tokens(spread_df['token'], li
 
 ## How does it work?
 
-This package contains ETL functions for extracting all the unique natural language medical terms from a pandas Series. The steps are much like any other ETL process for creating a bag of words/terms but this includes methods for normalizing the original column via "fuzzy string matching", preparing new DataFrames for loading to a PostgreSQL database, and ML pre-processing, binning and encoding focused on higher frequency terms.
+This package contains ETL functions for extracting all the unique natural language medical terms from a pandas DataFrame. The steps are much like any other ETL process for creating a bag of words/terms but this includes methods for normalizing the original column via "fuzzy string matching", as well as preparing new DataFrames for loading to an SQL database, and ML pre-processing like binning of low frequency records and categorical data encoding.
 
 
 ## Development
