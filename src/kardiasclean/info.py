@@ -67,5 +67,6 @@ def evaluate_distribution(high_frequency: pd.Series, low_frequency: pd.Series) -
         f"{'-'*20}\n"
         f"Summary\n"
         f"{'-'*20}\n"
-        f"From {total} data, {count_top} account for {100*n_top/total:.2f}% of the total count.\n"
+        f"From {total} data, there are {count_top} unique records\n" 
+        f"that account for {100*n_top/total:.2f}% of the total data (repeated).\n"
     )
