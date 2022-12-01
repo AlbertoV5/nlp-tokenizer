@@ -12,6 +12,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.10' 
+        cache: 'pip' # https://github.com/actions/setup-python#caching-packages-dependencies
+    - run: pip install -r docs/requirements.txt
     - uses: ammaraskar/sphinx-action@master
       with:
         docs-folder: "docs/"
