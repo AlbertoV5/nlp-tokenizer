@@ -21,6 +21,20 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.10' 
+        cache: 'pip' # https://github.com/actions/setup-python#caching-packages-dependencies
+    - run: pip install -r docs/requirements.txt
+    - uses: ammaraskar/sphinx-action@master
+      with:
+        docs-folder: "docs/"
   # Single deploy job since we're just deploying
   deploy:
     environment:
@@ -36,7 +50,7 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload entire repository
-          path: '.'
+          path: './docs'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1

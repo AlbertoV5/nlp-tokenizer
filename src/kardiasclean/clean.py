@@ -19,7 +19,6 @@ def split_string(column: pd.Series, delimiter: str = "+") -> pd.Series:
 
         diagnosis = split_string(df['diagnosis'])
     """
-
     def clean(x: str):
         return [string.strip() for string in x.split(delimiter)]
 
