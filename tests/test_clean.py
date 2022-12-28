@@ -43,7 +43,7 @@ def test_main():
     data_map["surgery"] = kardiasclean.normalize_from_tokens(
         data_map["token"], data_list["token"], data_list["surgery"]
     )
-    log.debug(data_map["surgery"])
+    log.debug(data_map["token"])
     # Pre-process
     bins = kardiasclean.perform_binning_quantile(data_map["surgery"], quantile=0.9)
     log.debug(f"\n{bins}")

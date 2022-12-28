@@ -40,56 +40,37 @@ def find_soundex_digit(char: str, d_soundex: dict = D_SOUNDEX_EN) -> int:
             return key
 
 
-def soundex(word: str) -> str:
+def soundex_en(word: str) -> str:
     """
-    American Soundex
-
+    American Soundex:
         - Convert all letters into upper case.
         - Retain the first letter in the word w.
         - From word w, all pairs of same digits and zeroes are removed.
         - The first four characters of word w are considered to be Soundex code.
+    
+    Implementation:
+        - Find digit from sets, exclude adjacent repeats.
+        - Exclude zeroes and join as string.
+        - Put string back together, zero-pad and limit.
     """
     word = word.upper()
-    # Find digit from sets, exclude adjacent repeats
     result = [find_soundex_digit(word[0])]
     for char in word[1:]:
         digit = find_soundex_digit(char)
         if digit is not None and digit != result[-1]:
             result.append(digit)
-    # Exclude zeroes and join as string
     result = "".join(str(r) for r in result[1:] if r != 0)
-    # Put string back together, zero-pad and limit
     return f"{word[0]}{result.ljust(3, '0')[0:3]}"
 
-def spanish_soundex(word: str):
-    """
-    Spanish Soundex
 
-    Unlike Soundex, the resultant code is independent of first letter of the word.
+def soundex_es(word: str) -> str:
+    """
+    Spanish Soundex:
+    https://wiki.postgresql.org/wiki/SoundexESP    
     """
     word = word.upper()
     for pattern, replace in D_ES_SUB.items():
         word = re.sub(pattern, replace, word)
-    return soundex(word)
-    # word = word.upper()
-    # # Find digit from sets, exclude adjacent repeats
-    # result = [find_soundex_digit(word[0], D_SOUNDEX_ES)]
-    # for char in word[1:]:
-    #     digit = find_soundex_digit(char)
-    #     if digit is not None and digit != result[-1]:
-    #         result.append(digit)
-    # # Exclude zeroes and join as string
-    # result = "".join(str(r) for r in result[1:] if r != 0)
-    # return f"{result.ljust(4, '0')[0:4]}"
+    return soundex_en(word)
 
-
-def metaphone(word: str):
-    return word
-
-
-def dmetaphone(w: str):
-    return w
-
-
-def metasoundex():
-    ...
+# conda create --name hac python=3.9

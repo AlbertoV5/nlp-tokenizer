@@ -3,7 +3,8 @@ import nltk
 from nltk.corpus import stopwords as _stopwords
 import pandas as pd
 
-from . import phonetics
+# from . import phonetics
+import phonetics
 
 
 def split_string(column: pd.Series, delimiter: str = "+") -> pd.Series:
@@ -171,11 +172,11 @@ def clean_tokenize(column: pd.Series, algorithm: str = "metaphone") -> pd.Series
     Example:
         surgery_map_df['token'] = clean_tokenize(data['keywords'])
     """
-    if algorithm == "metaphone":
+    if algorithm == "soundex":
+        return column.map(phonetics.soundex)
+    elif algorithm == "metaphone":
         return column.map(phonetics.metaphone)
     elif algorithm == "dmetaphone":
         return column.map(phonetics.dmetaphone)
-    elif algorithm == "metasoundex":
-        return column.map(phonetics.metasoundex)
     else:
         raise ValueError("Not a valid algorithm!")
