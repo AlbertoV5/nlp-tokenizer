@@ -5,7 +5,7 @@ from typing import List
 
 
 def perform_binning_quantile(
-   column: pd.Series, quantile: float = 0.5, bin_name: str = "Other"
+    column: pd.Series, quantile: float = 0.5, bin_name: str = "Other"
 ) -> pd.DataFrame:
     """Bin low frequency values by quantile threshold.
 
@@ -79,7 +79,9 @@ def perform_frequency_split_scalar(
     return [counts[counts < value], counts[counts >= value]]
 
 
-def perform_matrix_encoding(column: pd.Series, group_by: pd.Series, append_name: bool = True) -> pd.DataFrame:
+def perform_matrix_encoding(
+    column: pd.Series, group_by: pd.Series, append_name: bool = True
+) -> pd.DataFrame:
     """Returns encoded values as a matrix of columns with binary values.
 
     Args:

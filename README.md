@@ -47,6 +47,8 @@ poetry run pytest
 
 ## Changelog
 
+- 0.3.0: Updated to Python 3.9 and replaced phonetics dependency.
+
 - 0.2.1: Replaced psycopg2 dependency with psycopg2-binary.
 - 0.2.0: Fixed perform_binning implementations, new api for all functions.
 

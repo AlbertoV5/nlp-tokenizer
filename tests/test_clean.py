@@ -31,12 +31,14 @@ def test_main():
     # Clean
     data_map["surgery"] = kardiasclean.clean_accents(data_map["surgery"])
     data_map["surgery"] = kardiasclean.clean_symbols(data_map["surgery"])
-    data_map["keywords"] = kardiasclean.clean_stopwords(data_map["surgery"], extra=["parche"])
+    data_map["keywords"] = kardiasclean.clean_stopwords(
+        data_map["surgery"], extra=["parche"]
+    )
     data_map["token"] = kardiasclean.clean_tokenize(data_map["keywords"])
     data_list = kardiasclean.create_unique_list(data_map, data_map["token"]).drop(
         ["patient_id"], axis=1
     )
-    log.debug(data_list['keywords'])
+    log.debug(data_list["keywords"])
     # normalize map
     data_map["surgery"] = kardiasclean.normalize_from_tokens(
         data_map["token"], data_list["token"], data_list["surgery"]
@@ -45,7 +47,9 @@ def test_main():
     # Pre-process
     bins = kardiasclean.perform_binning_quantile(data_map["surgery"], quantile=0.9)
     log.debug(f"\n{bins}")
-    high_freq, low_freq = kardiasclean.perform_frequency_split_quantile(data_map["surgery"], quantile=0.9)
+    high_freq, low_freq = kardiasclean.perform_frequency_split_quantile(
+        data_map["surgery"], quantile=0.9
+    )
     evaluation = kardiasclean.evaluate_distribution(high_freq, low_freq)
     log.debug(evaluation)
     log.debug(data_map.columns)

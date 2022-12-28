@@ -1,8 +1,9 @@
 """Process and tokenize strings"""
 import nltk
 from nltk.corpus import stopwords as _stopwords
-import phonetics
 import pandas as pd
+
+from . import phonetics
 
 
 def split_string(column: pd.Series, delimiter: str = "+") -> pd.Series:
@@ -19,6 +20,7 @@ def split_string(column: pd.Series, delimiter: str = "+") -> pd.Series:
 
         diagnosis = split_string(df['diagnosis'])
     """
+
     def clean(x: str):
         return [string.strip() for string in x.split(delimiter)]
 
@@ -147,7 +149,7 @@ def clean_stopwords(
 
     def clean(x: str) -> str:
         return " ".join(word for word in sorted(set(x.split(" ")) - sws))
-    
+
     return column.str.lower().map(clean) if lower else column.map(clean)
 
 
@@ -173,5 +175,7 @@ def clean_tokenize(column: pd.Series, algorithm: str = "metaphone") -> pd.Series
         return column.map(phonetics.metaphone)
     elif algorithm == "dmetaphone":
         return column.map(phonetics.dmetaphone)
+    elif algorithm == "metasoundex":
+        return column.map(phonetics.metasoundex)
     else:
         raise ValueError("Not a valid algorithm!")

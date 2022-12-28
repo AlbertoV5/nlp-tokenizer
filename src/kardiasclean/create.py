@@ -41,7 +41,11 @@ def create_unique_list(
 
         pd.DataFrame: New dataframe with non-repeated values.
     """
-    return pd.DataFrame(
-        [df[column == token].iloc[position] for token in column.unique()],
-        columns=df.columns,
-    ).reset_index().drop(["index"], axis=1)
+    return (
+        pd.DataFrame(
+            [df[column == token].iloc[position] for token in column.unique()],
+            columns=df.columns,
+        )
+        .reset_index()
+        .drop(["index"], axis=1)
+    )
