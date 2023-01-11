@@ -34,11 +34,12 @@ def test_main():
     data_map["keywords"] = kardiasclean.clean_stopwords(
         data_map["surgery"], extra=["parche"]
     )
-    data_map["token"] = kardiasclean.clean_tokenize(data_map["keywords"])
+    data_map["anglo"] = kardiasclean.clean_anglophonize(data_map["keywords"])
+    data_map["token"] = kardiasclean.clean_tokenize(data_map["anglo"])
+    log.debug(data_map["anglo"])
     data_list = kardiasclean.create_unique_list(data_map, data_map["token"]).drop(
         ["patient_id"], axis=1
     )
-    log.debug(data_list["keywords"])
     # normalize map
     data_map["surgery"] = kardiasclean.normalize_from_tokens(
         data_map["token"], data_list["token"], data_list["surgery"]

@@ -3,6 +3,7 @@ from .clean import (
     clean_accents,
     clean_symbols,
     clean_stopwords,
+    clean_anglophonize,
     clean_tokenize,
 )
 from .create import spread_column, create_unique_list

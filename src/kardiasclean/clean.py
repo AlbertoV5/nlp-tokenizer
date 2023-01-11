@@ -3,6 +3,9 @@ import nltk
 from nltk.corpus import stopwords as _stopwords
 import pandas as pd
 
+from .phonetics import soundex
+import re
+
 # from . import phonetics
 import phonetics
 
@@ -152,6 +155,17 @@ def clean_stopwords(
         return " ".join(word for word in sorted(set(x.split(" ")) - sws))
 
     return column.str.lower().map(clean) if lower else column.map(clean)
+
+
+def clean_anglophonize(column: pd.Series) -> pd.Series:
+
+    def clean(x: str) -> str:
+        for pattern, replace in soundex.D_ES_SUB.items():
+            x = re.sub(pattern, replace, x)
+        return x
+    
+    return column.str.upper().map(clean)
+
 
 
 def clean_tokenize(column: pd.Series, algorithm: str = "metaphone") -> pd.Series:
