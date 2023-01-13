@@ -47,6 +47,9 @@ poetry run pytest
 
 ## Changelog
 
+- 0.3.1: Updated dependencies
+- 0.3.0: Removed SQLAlchemy dependency
+
 - 0.2.1: Replaced psycopg2 dependency with psycopg2-binary.
 - 0.2.0: Fixed perform_binning implementations, new api for all functions.
 

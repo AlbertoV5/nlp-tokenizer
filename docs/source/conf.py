@@ -22,7 +22,7 @@ copyright = "2022, Alberto Valdez"
 author = "Alberto Valdez"
 
 # The full version, including alpha/beta/rc tags
-release = "0.2.0"
+release = "0.3.1"
 
 # -- General configuration ---------------------------------------------------
 
