@@ -47,6 +47,7 @@ poetry run pytest
 
 ## Changelog
 
+- 0.3.3: Separated Tokenizer methods to allow steps in between clean and normalize
 - 0.3.2: Create Tokenizer class for ETL
 - 0.3.1: Updated dependencies
 - 0.3.0: Removed SQLAlchemy dependency
