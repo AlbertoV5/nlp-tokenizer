@@ -15,3 +15,4 @@ from .pre_processing import (
     perform_frequency_split_quantile,
     perform_frequency_split_scalar,
 )
+from .tokenizer import Tokenizer
