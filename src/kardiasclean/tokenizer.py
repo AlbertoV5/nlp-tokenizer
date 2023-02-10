@@ -22,7 +22,7 @@ class Tokenizer:
         self.token_col = "{col}" + token_suffix
         self.kw_col = "{col}" + keywords_suffix
 
-    def transform(self, *cols: str) -> None:
+    def clean(self, *cols: str) -> None:
         """Apply all cleaning methods with the default values."""
         for col in cols:
             token = self.token_col.format(col=col)
@@ -32,13 +32,15 @@ class Tokenizer:
             self.df[kw] = clean_stopwords(self.df[col])
             self.df[token] = clean_tokenize(self.df[kw])
 
+    def normalize(self, *cols: str) -> None:
+        """Normalize given columns by their tokens."""
         for col in cols:
             token = self.token_col.format(col=col)
             unique_df = create_unique_list(self.df[[token, col]], self.df[token])
             self.df[col] = normalize_from_tokens(self.df[token], unique_df[token], unique_df[col])
-        
-    def get_uniques(self, *cols: Union[str, list]) -> List[pd.DataFrame]:
-        """Use the Tokenizer's dataframe to get the unique values based on the arguments.
+    
+    def extract(self, *cols: Union[str, list]) -> List[pd.DataFrame]:
+        """Use the Tokenizer's dataframe to get the unique values based on the given columns.
         If the argument is a string, use it along its token to create an unique list.
         If the argument is a list, use the first element with the token and include the
         with the max value found."""
