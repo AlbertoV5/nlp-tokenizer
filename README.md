@@ -8,6 +8,8 @@ Clean, Normalize, and Tokenize medical records data.
 pip install kardiasclean
 ```
 
+Temporarily removed from PyPi. Install via git!
+
 ## Usage
 
 ```python
